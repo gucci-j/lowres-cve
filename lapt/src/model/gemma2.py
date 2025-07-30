@@ -22,15 +22,6 @@ class Gemma2ForMultiCausalLM(Gemma2ForCausalLM):
         self.lm_heads = nn.ModuleList(
             [nn.Linear(config.hidden_size, config.vocab_size, bias=None) for _ in range(config.num_lm_heads)]
         )
-        #####
-        # This is no longer needed
-        #####
-        if config.copy_lm_head:
-            logger.info(f"Copying LM head weights...")
-            for i in range(config.num_lm_heads):
-                with torch.no_grad():
-                    self.lm_heads[i].weight.copy_(self.lm_head.weight)
-
         # Initialize weights and apply final processing
         self.post_init()
 
