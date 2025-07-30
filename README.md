@@ -106,7 +106,10 @@ Please see the `initialization` directory for target model initialization.
 ### 3. Language adaptive pre-training
 Please see the `lapt` directory for language adaptive pre-training.
 
-### 4. Evaluation
+### 4. (Optional) Apply a post-hoc, training-free method to mitigate catastrophic forgetting
+Please see the `elchat` directory for applying a post-hoc, training-free method to mitigate catastrophic forgetting.
+
+### 5. Evaluation
 Please see the `eval` directory for evaluation.
 
 

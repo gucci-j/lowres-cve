@@ -1,7 +1,7 @@
 Evaluation
 ===
 
-Here, we evaluate models on machine translation and summarization tasks. We use the `lighteval` library to evaluate the models.
+Here, we evaluate models on machine translation, summarization, reading comprehension, and general reasoning and knowledge tasks. We use the `lighteval` library to evaluate the models.
 
 ## Reproduction
 First, you need to download datasets:
