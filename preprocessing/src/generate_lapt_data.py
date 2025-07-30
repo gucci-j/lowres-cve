@@ -1,6 +1,5 @@
 from datasets import load_dataset
-from transformers import AutoTokenizer, LlamaTokenizer
-
+from transformers import AutoTokenizer
 
 def group_texts(examples: dict, block_size=128, eos_id=2):
     # Concatenate all texts.
@@ -38,33 +37,28 @@ def main(args):
 
     # Load the tokenizer
     print("Loading tokenizer...")
-    if args.tokenizer_name_or_path == "mistralai/Mistral-7B-v0.1":
-        tokenizer = LlamaTokenizer.from_pretrained(
-            args.tokenizer_name_or_path,
-            cache_dir=args.tokenizer_cache_dir
-        )
-    else:
-        tokenizer = AutoTokenizer.from_pretrained(
-            args.tokenizer_name_or_path,
-            cache_dir=args.tokenizer_cache_dir
-        )
-    tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = AutoTokenizer.from_pretrained(
+        args.tokenizer_name_or_path,
+        cache_dir=args.tokenizer_cache_dir
+    )
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
 
     # Tokenize the dataset
     print("Tokenizing the dataset...")
     dataset = dataset.map(
         lambda examples: tokenizer(examples["text"]),
         batched=True,
-        num_proc=4,
+        num_proc=8,
         remove_columns=dataset.column_names,
     )
 
     # Group the texts
     print("Grouping the texts...")
     dataset = dataset.map(
-        lambda examples: group_texts(examples, args.max_length),
+        lambda examples: group_texts(examples, args.max_length, tokenizer.eos_token_id),
         batched=True, 
-        num_proc=4
+        num_proc=8
     )
 
     # Save the tokenized dataset to a file
@@ -114,7 +108,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--max_length", 
         type=int, 
-        default=128, 
+        default=2048, 
         help="Maximum length of the tokenized sequences"
     )
     args = parser.parse_args()

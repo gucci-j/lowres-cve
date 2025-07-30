@@ -13,3 +13,7 @@ Run the following scripts. Note that you need to modify the paths starting with 
 * Llama2: [llama2.sh](./scripts/llama2.sh)
 * Llama3: [llama3.sh](./scripts/llama3.sh)
 * Gemma2: [gemma2.sh](./scripts/gemma2.sh)
+* Vocabulary replacement with Gemma2
+    1. Run [train_vr_tokenizer.sh](./scripts/train_vr_tokenizer.sh) to train a tokenizer for vocabulary replacement.
+    2. Run [generate_vr_lapt_data.sh](./scripts/generate_vr_lapt_data.sh) to generate LAPT data with vocabulary replacement.
+    3. Run [train_vr_fasttext.sh](./scripts/train_vr_fasttext.sh) to train a fastText model for vocabulary replacement.

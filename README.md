@@ -34,13 +34,53 @@ For models developed in the paper, please refer to [Adapted Models](#adapted-mod
 
 
 ## Installation
-After manually installing `PyTorch` and `transformers`, please run the following.
+### PyTorch NGC container with Apptainer
+We strongly recommend using the PyTorch NGC container for installation. If you are using an HPC system, you can use the following commands to pull the container and set up the environment.  
+
+```bash
+apptainer pull docker://nvcr.io/nvidia/pytorch:25.04-py3
+mkdir -p /path/to/saved/containers
+mv pytorch_25.04-py3.sif /path/to/saved/containers
+
+apptainer exec \
+    --bind /path/to/home/:/path/to/home \
+    --nv /path/to/saved/containers/pytorch_25.04-py3.sif \
+    /bin/bash
+
+python3 -m venv --system-site-packages $HOME/envs/lowres-cve
+source $HOME/envs/lowres-cve/bin/activate
+
+# Install packages
+unset PIP_CONSTRAINT
+pip install transformers peft datasets evaluate bitsandbytes scikit-learn sentencepiece huggingface-hub tqdm pyarrow protobuf tiktoken nltk zstandard
+cd $HOME/src/
+git clone -b jun2025 --single-branch https://github.com/gucci-j/lighteval
+cd lighteval
+pip3 install .
+cd ..
+git clone https://github.com/facebookresearch/fastText.git
+cd fastText
+pip3 install .
+cd ..
+git clone https://github.com/google-research/bleurt.git
+cd bleurt
+pip3 install .
+
+# Configure environment
+export CUDA_HOME=/usr/local/cuda-12.9
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+export TMPDIR=/tmp
+```
+
+### Installing from scratch
+If you cannot use the PyTorch NGC container with Apptainer, please install the required packages manually. After manually installing `PyTorch` and `transformers`, please run the following.
 ```bash
 # fastText
 pip install -r requirements.txt
 git clone https://github.com/facebookresearch/fastText.git
 cd fastText
 pip install .
+cd ..
 
 # BLEURT
 git clone https://github.com/google-research/bleurt.git
@@ -48,6 +88,12 @@ cd bleurt
 pip install .
 wget https://storage.googleapis.com/bleurt-oss-21/BLEURT-20.zip .
 unzip BLEURT-20.zip
+cd ..
+
+# LightEval
+git clone -b jun2025 --single-branch https://github.com/gucci-j/lighteval
+cd lighteval
+pip3 install .
 ```
 
 ## Reproduction
