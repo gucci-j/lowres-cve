@@ -5,4 +5,5 @@ Here, we initialize models using a new expanded target language tokenizer. For r
 
 * Llama2: [llama2.sh](./scripts/llama2.sh)
 * Llama3: [llama3.sh](./scripts/llama3.sh)
-* Gemma2: [gemma2.sh](./scripts/gemma2.sh)
+* Gemma2: [gemma2.sh](./scripts/gemma2.sh)  
+* Vocabulary replacement with Gemma2: [vr.sh](./scripts/vr.sh)  
