@@ -21,9 +21,9 @@ Note that you need to modify the paths starting with `/path/to/` and `your-hub-i
 ### Classification tasks and English tasks
 For classification tasks and English tasks, please use scripts under `lowres-cve/eval/scripts2/`. The scripts are similar to the ones in `lowres-cve/eval/scripts/`, but they use more recent versions of the `lighteval` library and have been updated to work with the latest models.
 
-* [Llama2]: [llama2.sh](./scripts2/llama2.sh)
-* [Llama3]: [llama3.sh](./scripts2/llama3.sh)
-* [Gemma2]: [gemma2.sh](./scripts2/gemma2.sh)
+* Llama2: [llama2.sh](./scripts2/llama2.sh)
+* Llama3: [llama3.sh](./scripts2/llama3.sh)
+* Gemma2: [gemma2.sh](./scripts2/gemma2.sh)
 
 We also include scripts for summarization and machine translation tasks using the more recent `lighteval` library for your convenience.
 
