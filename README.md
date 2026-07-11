@@ -215,13 +215,19 @@ This code is licensed under the MIT License. The models are licensed under the r
 ## Citation
 If you use this code or models, please cite the following paper.
 ```
-@article{yamaguchi-etal-2024-effectively,
-    title={How Can We Effectively Expand the Vocabulary of LLMs with 0.01GB of Target Language Text?}, 
-    author={Atsuki Yamaguchi and Aline Villavicencio and Nikolaos Aletras},
-    year={2024},
-    journal={ArXiv},
-    year={2024},
-    volume={abs/2406.11477},
-    url={https://arxiv.org/abs/2406.11477}, 
+@article{10.1162/COLI.a.581,
+    author = {Yamaguchi, Atsuki and Villavicencio, Aline and Aletras, Nikolaos},
+    title = {How Can We Effectively Expand the Vocabulary of LLMs with 0.01GB of Target Language Text?},
+    journal = {Computational Linguistics},
+    volume = {52},
+    number = {1},
+    pages = {295-330},
+    year = {2026},
+    month = {03},
+    abstract = {Large language models (LLMs) have shown remarkable capabilities in many languages beyond English. Yet, LLMs require more inference steps when generating non-English text due to their reliance on English-centric tokenizers and vocabulary, resulting in higher usage costs to non-English speakers. Vocabulary expansion with target language tokens is a widely used cross-lingual vocabulary adaptation approach to remedy this issue. Despite its effectiveness in inference speedup, previous work on vocabulary expansion has focused on high-resource settings assuming access to a substantial amount of target language data to effectively initialize the embeddings of the new tokens and adapt the LLM to the target language. However, vocabulary expansion in low-resource settings has yet to be explored. In this article, we investigate vocabulary expansion in low-resource settings by considering embedding initialization methods and continual pre-training strategies. Through extensive experiments across typologically diverse languages, tasks, and models, we establish a set of strategies to perform vocabulary expansion for faster inference, while striving to maintain competitive downstream performance to baselines. This is achieved with only 30K sentences (∼0.01GB text data) from the target language.1},
+    issn = {0891-2017},
+    doi = {10.1162/COLI.a.581},
+    url = {https://doi.org/10.1162/COLI.a.581},
+    eprint = {https://direct.mit.edu/coli/article-pdf/52/1/295/2567977/coli.a.581.pdf},
 }
 ```
